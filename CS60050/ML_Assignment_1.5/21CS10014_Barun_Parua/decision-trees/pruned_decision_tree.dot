@@ -1,0 +1,27 @@
+digraph DecisionTree {
+N0 [label=<<b>Glucose</b><br/>127.00>, shape=box];
+N1 [label=<<b>Age</b><br/>28.00>, shape=box];
+N0 -> N1 [label="<="];
+N2 [label=<<b>Outcome:</b> <br/> 0>, shape=box];
+N1 -> N2 [label="<="];
+N3 [label=<<b>Bmi</b><br/>26.20>, shape=box];
+N1 -> N3 [label=">"];
+N4 [label=<<b>Outcome:</b> <br/> 0>, shape=box];
+N3 -> N4 [label="<="];
+N5 [label=<<b>Diabetespedigreefunction</b><br/>0.61>, shape=box];
+N3 -> N5 [label=">"];
+N6 [label=<<b>Pregnancies</b><br/>13.00>, shape=box];
+N5 -> N6 [label="<="];
+N7 [label=<<b>Outcome:</b> <br/> 0>, shape=box];
+N6 -> N7 [label="<="];
+N8 [label=<<b>Outcome:</b> <br/> 1>, shape=box];
+N6 -> N8 [label=">"];
+N9 [label=<<b>Pregnancies</b><br/>8.00>, shape=box];
+N5 -> N9 [label=">"];
+N10 [label=<<b>Outcome:</b> <br/> 0>, shape=box];
+N9 -> N10 [label="<="];
+N11 [label=<<b>Outcome:</b> <br/> 1>, shape=box];
+N9 -> N11 [label=">"];
+N12 [label=<<b>Outcome:</b> <br/> 0>, shape=box];
+N0 -> N12 [label=">"];
+}
