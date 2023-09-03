@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>code1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>code</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -15223,6 +15223,22 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>First of all, we import the necessary libraries.</p>
+<p>Then we read the data from the csv file and store it in a pandas dataframe. After that randomization is done along with some preprocessing.</p>
+<p>Note that preprocessing is important as there are some missing values in the data. Now this gives issues with saga solvers. Hence we drop the rows with missing values.</p>
+<p>Also, we drop the first column as it is just indicating the index of the row which is not a very useful feature.</p>
+<p>After that we split the data into training and testing sets.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15235,12 +15251,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="c1"># pandas for reading the dataset into a dataframe</span>
 <span class="c1"># numpy for mathematical operations</span>
 <span class="c1"># sklearn for preprocessing and machine learning algorithms and encoding</span>
-<span class="c1"># sklearn.metrics for calculating the accuracy score, classification report and confusion matrix</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
 </pre></div>
 
      </div>
@@ -15256,7 +15271,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the dataset</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># extracting the dataset into a dataframe</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../dataset/cross-validation.csv&#39;</span><span class="p">)</span>
 
 <span class="c1"># randomize the dataset</span>
@@ -15329,79 +15344,79 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   <tbody>
     <tr>
       <th>0</th>
-      <td>LP001267</td>
-      <td>Female</td>
-      <td>Yes</td>
-      <td>2</td>
-      <td>Graduate</td>
-      <td>No</td>
-      <td>1378</td>
-      <td>1881.0</td>
-      <td>167.0</td>
-      <td>360.0</td>
-      <td>1.0</td>
-      <td>Urban</td>
-      <td>N</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>LP001343</td>
+      <td>LP002244</td>
       <td>Male</td>
       <td>Yes</td>
       <td>0</td>
       <td>Graduate</td>
       <td>No</td>
-      <td>1759</td>
-      <td>3541.0</td>
-      <td>131.0</td>
+      <td>2333</td>
+      <td>2417.0</td>
+      <td>136.0</td>
       <td>360.0</td>
       <td>1.0</td>
+      <td>Urban</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LP001677</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>4923</td>
+      <td>0.0</td>
+      <td>166.0</td>
+      <td>360.0</td>
+      <td>0.0</td>
       <td>Semiurban</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>LP001020</td>
-      <td>Male</td>
-      <td>Yes</td>
-      <td>1</td>
-      <td>Graduate</td>
-      <td>No</td>
-      <td>12841</td>
-      <td>10968.0</td>
-      <td>349.0</td>
-      <td>360.0</td>
-      <td>1.0</td>
-      <td>Semiurban</td>
-      <td>N</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>LP001032</td>
-      <td>Male</td>
+      <td>LP001871</td>
+      <td>Female</td>
       <td>No</td>
       <td>0</td>
       <td>Graduate</td>
       <td>No</td>
-      <td>4950</td>
+      <td>7200</td>
       <td>0.0</td>
+      <td>120.0</td>
+      <td>360.0</td>
+      <td>1.0</td>
+      <td>Rural</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LP001520</td>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>4860</td>
+      <td>830.0</td>
       <td>125.0</td>
       <td>360.0</td>
       <td>1.0</td>
-      <td>Urban</td>
+      <td>Semiurban</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>LP002453</td>
+      <td>LP001552</td>
       <td>Male</td>
-      <td>No</td>
+      <td>Yes</td>
       <td>0</td>
       <td>Graduate</td>
-      <td>Yes</td>
-      <td>7085</td>
-      <td>0.0</td>
-      <td>84.0</td>
+      <td>No</td>
+      <td>4583</td>
+      <td>5625.0</td>
+      <td>255.0</td>
       <td>360.0</td>
       <td>1.0</td>
       <td>Semiurban</td>
@@ -15418,6 +15433,192 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># some data preprocessing as we can see that there are some missing values in the dataset as well as some features are categorical</span>
+
+<span class="c1"># remove the rows with missing values</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># drop the Loan_ID column</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_ID&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># split the dataset into train and test</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):]</span>
+
+<span class="c1"># split the train and test into X and Y</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
+
+<span class="c1"># print the first 5 rows of the train X to check if NaN values are removed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First 5 rows of the train X:&quot;</span><span class="p">)</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+First 5 rows of the train X:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Married</th>
+      <th>Dependents</th>
+      <th>Education</th>
+      <th>Self_Employed</th>
+      <th>ApplicantIncome</th>
+      <th>CoapplicantIncome</th>
+      <th>LoanAmount</th>
+      <th>Loan_Amount_Term</th>
+      <th>Credit_History</th>
+      <th>Property_Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>2333</td>
+      <td>2417.0</td>
+      <td>136.0</td>
+      <td>360.0</td>
+      <td>1.0</td>
+      <td>Urban</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Male</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>4923</td>
+      <td>0.0</td>
+      <td>166.0</td>
+      <td>360.0</td>
+      <td>0.0</td>
+      <td>Semiurban</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Female</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>7200</td>
+      <td>0.0</td>
+      <td>120.0</td>
+      <td>360.0</td>
+      <td>1.0</td>
+      <td>Rural</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>4860</td>
+      <td>830.0</td>
+      <td>125.0</td>
+      <td>360.0</td>
+      <td>1.0</td>
+      <td>Semiurban</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Male</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>Graduate</td>
+      <td>No</td>
+      <td>4583</td>
+      <td>5625.0</td>
+      <td>255.0</td>
+      <td>360.0</td>
+      <td>1.0</td>
+      <td>Semiurban</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Here we define a get_scores function which takes in the predicted values and the actual values and returns the accuracy, precision, recall using the formulae related to true positives, true negatives, false positives and false negatives.</p>
+<p>There is also encoder and scaler functions defined which are used to encode the categorical features and scale the numerical features respectively.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15426,8 +15627,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_scores</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-    <span class="c1"># get true positives, true negatives, false positives and false negatives</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get true positives, true negatives, false positives and false negatives</span>
+<span class="c1"># use them to calculate accuracy, precision and recall of the model</span>
+<span class="c1"># return the accuracy, precision and recall</span>
+
+<span class="k">def</span> <span class="nf">get_scores</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
     <span class="n">tp</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span> <span class="ow">and</span> <span class="n">y_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span>
@@ -15446,15 +15650,18 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     
     <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
 
-<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-
+<span class="c1"># define the encoding and scaling functions</span>
+<span class="c1"># encoder is the LabelEncoder object</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="c1"># encode function encodes the categorical data</span>
 <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
-            <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+            <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">data</span>
 
+<span class="c1"># scaler is the StandardScaler object</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 </pre></div>
 
@@ -15463,6 +15670,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This part of the code has the implementation of the logistic regression model using saga solver for the whole training dataset.</p>
+<p>Note that this part just uses the training data and tests on the testing data. This part is not used in the 5-fold cross validation.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15471,73 +15691,109 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove the rows with missing values</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-
-<span class="c1"># drop the Loan_ID column</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_ID&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># split the dataset into train and test</span>
-<span class="n">train</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))]</span>
-<span class="n">test</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)):]</span>
-
-<span class="c1"># split the train and test into X and Y</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
-
-<span class="c1"># encode the categorical features</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># encode the categorical features</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
+<span class="c1"># scale the data</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
 <span class="c1"># create the model with saga solver</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
-<span class="c1"># fit the model</span>
+<span class="c1"># fit the model and predict the test data</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># predict the model</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
+<span class="c1"># get the accuracy, precision and recall of the model and print them</span>
 <span class="n">total_accuracy</span><span class="p">,</span> <span class="n">total_precision</span><span class="p">,</span> <span class="n">total_recall</span> <span class="o">=</span> <span class="n">get_scores</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy Score: &quot;</span><span class="p">,</span> <span class="n">total_accuracy</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision Score: &quot;</span><span class="p">,</span> <span class="n">total_precision</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall Score: &quot;</span><span class="p">,</span> <span class="n">total_recall</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Accuracy Score: &quot;</span><span class="p">,</span> <span class="n">total_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Precision Score: &quot;</span><span class="p">,</span> <span class="n">total_precision</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Recall Score: &quot;</span><span class="p">,</span> <span class="n">total_recall</span><span class="p">)</span>
+</pre></div>
 
-<span class="c1"># make the 5-fold cross validation</span>
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Total Accuracy Score:  0.78125
+Total Precision Score:  0.788235294117647
+Total Recall Score:  0.9571428571428572
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This part has the 5-fold cross validation implementation. The training data is split into 5 parts and each part is used as the validation set once and the rest of the data is used as the training set.</p>
+<p>In this way, we get 5 sets on which the model is trained and tested. The individual scores are stored in a list and the average of the scores is taken to get the final scores. The scores are printed for each fold and the average scores are printed at the end.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># make the 5-fold cross validation</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">//</span> <span class="n">k</span>
+<span class="c1"># lists to store the accuracy, precision and recall of each fold</span>
 <span class="n">accuracy_list</span><span class="p">,</span> <span class="n">precision_list</span><span class="p">,</span> <span class="n">recall_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="c1"># create 5 folds of the train data and make validation set</span>
     <span class="n">val</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">size</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">size</span><span class="p">]</span>
     <span class="n">train</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    
     <span class="c1"># split the train and test into X and Y</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
     <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">])</span>
     <span class="n">y_test</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;Loan_Status&#39;</span><span class="p">]</span>
     
+    <span class="c1"># encode and scale the data</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    
-    <span class="c1"># scale the data</span>
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     
     <span class="c1"># create the model with saga solver</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;saga&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
     
-    <span class="c1"># fit the model</span>
+    <span class="c1"># fit the model and predict the test data</span>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    
-    <span class="c1"># predict the model</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     
+    <span class="c1"># get the accuracy, precision and recall of the model and print them</span>
+    <span class="c1"># also store them in the lists</span>
     <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span> <span class="o">=</span> <span class="n">get_scores</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
     <span class="n">accuracy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
     <span class="n">precision_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision</span><span class="p">)</span>
@@ -15548,7 +15804,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall Score: &quot;</span><span class="p">,</span> <span class="n">recall</span><span class="p">)</span>
     
 <span class="c1"># print the mean accuracy, precision and recall</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>    
+<span class="nb">print</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Accuracy Score: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy_list</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Precision Score: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">precision_list</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Recall Score: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">recall_list</span><span class="p">))</span>
@@ -15571,34 +15827,30 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy Score:  0.8125
-Precision Score:  0.8117647058823529
-Recall Score:  0.971830985915493
-Fold:  1
-Accuracy Score:  0.7395833333333334
-Precision Score:  0.7261904761904762
-Recall Score:  0.9682539682539683
+<pre>Fold:  1
+Accuracy Score:  0.7916666666666666
+Precision Score:  0.7605633802816901
+Recall Score:  0.9473684210526315
 Fold:  2
-Accuracy Score:  0.78125
-Precision Score:  0.7590361445783133
-Recall Score:  0.984375
-Fold:  3
-Accuracy Score:  0.8333333333333334
-Precision Score:  0.8243243243243243
-Recall Score:  0.953125
-Fold:  4
-Accuracy Score:  0.8541666666666666
-Precision Score:  0.8414634146341463
-Recall Score:  0.9857142857142858
-Fold:  5
 Accuracy Score:  0.8125
-Precision Score:  0.8117647058823529
-Recall Score:  0.971830985915493
+Precision Score:  0.7901234567901234
+Recall Score:  0.9846153846153847
+Fold:  3
+Accuracy Score:  0.875
+Precision Score:  0.8875
+Recall Score:  0.9594594594594594
+Fold:  4
+Accuracy Score:  0.78125
+Precision Score:  0.7586206896551724
+Recall Score:  1.0
+Fold:  5
+Accuracy Score:  0.78125
+Precision Score:  0.788235294117647
+Recall Score:  0.9571428571428572
 
-
-Mean Accuracy Score:  0.8041666666666668
-Mean Precision Score:  0.7925558131219226
-Mean Recall Score:  0.9726598479767494
+Mean Accuracy Score:  0.8083333333333332
+Mean Precision Score:  0.7970085641689266
+Mean Recall Score:  0.9697172244540665
 </pre>
 </div>
 </div>
@@ -15607,6 +15859,18 @@ Mean Recall Score:  0.9726598479767494
 
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>End of code. Thank you.</p>
+
+</div>
+</div>
+</div>
 </div>
 </body>
 
